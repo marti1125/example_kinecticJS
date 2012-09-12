@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sprites</title>
+	<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	#container {
+		background-color: #222;
+		display: inline-block;
+		width: 580px;
+		height: 202px;
+	}
+	#buttons {
+		position: absolute;
+		top: 5px;
+		left: 10px;
+	}
+	#buttons > input {
+		padding: 10px;
+		display: block;
+		margin-top: 5px;
+	}
+	canvas {
+		border: 1px solid #9c9898;
+	}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<div id="buttons">
+     	<input type="button" id="punch" value="Disparo">
+    </div>
+<script type="text/javascript" src="kinetic-v4.0.1.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var stage = new Kinetic.Stage({
+			container: "container",
+			width: 578,
+			height: 200
+		});
+
+		var layer = new Kinetic.Layer();
+
+		var animations = {
+			idle: [{
+				x: 0,
+				y: 68,
+				width: 38,
+				height: 38
+			}, {
+				x: 40,
+				y: 68,
+				width: 31,
+				height: 38
+			},{
+				x: 78,
+				y: 68,
+				width: 32,
+				height: 38
+			}, {
+				x: 110,
+				y: 68,
+				width: 21,
+				height: 38
+			}], disparo: [{
+				x: 0,
+				y: 224,
+				width: 28,
+				height: 34
+			}, {
+				x: 31,
+				y: 224,
+				width: 27,
+				height: 34
+			}, {
+				x: 63,
+				y: 224,
+				width: 34,
+				height: 34
+			}]
+		};
+
+		var imageObj = new Image();
+
+		imageObj.onload = function() {
+			var blod = new Kinetic.Sprite({
+				x: 250,
+				y: 40,
+				image: imageObj,
+				animation: 'idle',
+				animations: animations,
+				frameRate: 7
+			});
+
+			// add the shape to the layer
+			layer.add(blod);
+
+			// add the layer to the stage
+			stage.add(layer);
+
+			// start sprite animation
+			blod.start();
+
+			// resume transition
+			document.getElementById('punch').addEventListener('click', function() {
+				blod.setAnimation('disparo');
+				blod.afterFrame(2, function() {
+					blod.setAnimation('idle');
+				});
+			}, false);
+
+		};		
+
+		imageObj.src = "sprite.gif";
+		
+	};
+</script>
+</body>
+</html>

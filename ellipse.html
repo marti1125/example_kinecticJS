@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ellipse</title>
+	<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9c9898;
+	}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+<script type="text/javascript" src="kinetic-v4.0.1.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var stage = new Kinetic.Stage({
+			container: "container",
+			width: 578,
+			height: 200
+		});
+
+		var layer = new Kinetic.Layer();
+
+		var oval = new Kinetic.Ellipse({
+			x: stage.getWidth() / 2,
+			y: stage.getHeight() / 2,
+			radius: {
+				x: 100,
+				y: 50
+			},
+			fill: "yellow",
+			stroke: "black",
+			strokeWidth: 4
+		});		
+
+		// add the shapre to the layer
+		layer.add(oval);
+
+		// add the layer to the stage
+		stage.add(layer);
+	};
+</script>
+</body>
+</html>

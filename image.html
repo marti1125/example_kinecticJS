@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ellipse</title>
+	<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9c9898;
+	}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+<script type="text/javascript" src="kinetic-v4.0.1.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var stage = new Kinetic.Stage({
+			container: "container",
+			width: 578,
+			height: 200
+		});
+
+		var layer = new Kinetic.Layer();
+
+		var imageObj = new Image();
+
+		imageObj.onload = function() {
+			var patan = new Kinetic.Image({
+				x: 140,
+				y: stage.getHeight() / 2 - 59,
+				image: imageObj,
+				width: 108,
+				height: 133
+			});
+
+			var filteredPatan = new Kinetic.Image({
+				x: 320,
+				y: stage.getHeight() / 2 - 59,
+				image: imageObj,
+				width: 108,
+				height: 133
+			});
+
+			// add the shape to the layer
+			layer.add(patan);
+			layer.add(filteredPatan);
+
+			// add the layer to the stage
+			stage.add(layer);
+
+			// apply grayscale filter to second image
+			filteredPatan.applyFilter({
+				filter: Kinetic.Filters.Grayscale,
+				callback: function() {
+					layer.draw();
+				}
+			});
+		};
+		imageObj.src = "patan.jpg";
+	};
+</script>
+</body>
+</html>
