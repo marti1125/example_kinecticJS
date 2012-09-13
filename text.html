@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text</title>
+	<style type="text/css">
+	body {
+		margin: 0px;
+		padding: 0px;
+	}
+	canvas {
+		border: 1px solid #9c9898;
+	}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+<script type="text/javascript" src="kinetic-v4.0.1.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		var stage = new Kinetic.Stage({
+			container: "container",
+			width: 578,
+			height: 250
+		});
+
+		var layer = new Kinetic.Layer();
+
+		var simpleText = new Kinetic.Text({
+			x: 190,
+			y: 15,
+			text: "Simple Text",
+			fontFamily: "Calibri",
+			fontSize: 30,
+			textFill: "green"
+		});
+
+		var complexText =  new Kinetic.Text({
+			x: 100,
+			y: 60,
+			stroke: "#555",
+			strokeWidth: 5,
+			text: "Complex text \n\n All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.",
+			fontSize: 14,
+			fontFamily: "Calibri",
+			textFill: "#555",
+			width: 380,
+			padding: 20,
+			align: "center",
+			fontStyle: "italic",
+			shadow: {
+				color: "black",
+				blur: 1,
+				offset: [10, 10],
+				opacity: 0.2
+			},
+			cornerRadius: 10
+		});
+
+		// add the shapes to the layer
+		layer.add(simpleText);
+		layer.add(complexText);
+		stage.add(layer);
+	};
+	
+</script>
+</body>
+</html>
